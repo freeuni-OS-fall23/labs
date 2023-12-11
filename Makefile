@@ -136,6 +136,12 @@ $U/initcode: $U/initcode.S
 	$(OBJCOPY) -S -O binary $U/initcode.out $U/initcode
 	$(OBJDUMP) -S $U/initcode.o > $U/initcode.asm
 
+$U/shellcode: $U/shellcode.S
+	$(CC) $(CFLAGS) -march=rv64g -nostdinc -I. -Ikernel -c $U/shellcode.S -o $U/shellcode.o
+	$(LD) $(LDFLAGS) -N -e start -Ttext 0 -o $U/shellcode.out $U/shellcode.o
+	$(OBJCOPY) -S -O binary $U/shellcode.out $U/shellcode
+	$(OBJDUMP) -S $U/shellcode.o > $U/shellcode.asm
+
 tags: $(OBJS) _init
 	etags *.S *.c
 
@@ -188,6 +194,9 @@ UPROGS=\
 	$U/_grind\
 	$U/_wc\
 	$U/_zombie\
+	$U/_vuln\
+	$U/_exp\
+	$U/shellcode\
 
 
 
