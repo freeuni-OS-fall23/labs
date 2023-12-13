@@ -17,13 +17,13 @@ void lgets(char *input) {
   input[i] = 0;
 }
 
-void win() {
-  int fd = open("flag.txt", O_RDONLY);
-  char buf[128];
-  int n_read = read(fd, buf, 128);
-  write(1, buf, n_read);
-  exit(0);
-}
+// void win() {
+//   int fd = open("flag.txt", O_RDONLY);
+//   char buf[128]; // sp
+//   int n_read = read(fd, buf, 128);
+//   write(1, buf, n_read);
+//   exit(0);
+// }
 
 int sumbytes() {
   char buf[128];
